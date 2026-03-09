@@ -17,14 +17,38 @@ class SubBHomeUI extends StatefulWidget {
 
 class _SubBHomeUIState extends State<SubBHomeUI> {
   static const List<HotlineItem> _items = [
-    HotlineItem(name: 'เหตุด่วนเหตุร้าย', number: '191'),
-    HotlineItem(name: 'ศูนย์ปลอดภัยคมนาคม', number: '1356'),
-    HotlineItem(name: 'หน่วยแพทย์กู้ชีพ', number: '1554'),
-    HotlineItem(name: 'ศูนย์เอราวัณ', number: '1646'),
-    HotlineItem(name: 'เจ็บป่วยฉุกเฉิน', number: '1669'),
-    HotlineItem(name: 'กู้ภัย', number: 'XXXX-XXXX'),
-    HotlineItem(name: 'ดับเพลิง', number: '199'),
-    HotlineItem(name: 'แจ้งอัคคีภัย', number: '199'),
+    HotlineItem(
+        name: 'เหตุด่วนเหตุร้าย',
+        number: '191',
+        imagePath: 'assets/images/sub_b/emergency.png'),
+    HotlineItem(
+        name: 'ศูนย์ปลอดภัยคมนาคม',
+        number: '1356',
+        imagePath: 'assets/images/sub_b/safety_center.png'),
+    HotlineItem(
+        name: 'หน่วยแพทย์กู้ชีพ',
+        number: '1554',
+        imagePath: 'assets/images/sub_b/medical.png'),
+    HotlineItem(
+        name: 'ศูนย์เอราวัณ',
+        number: '1646',
+        imagePath: 'assets/images/sub_b/erawan.png'),
+    HotlineItem(
+        name: 'เจ็บป่วยฉุกเฉิน',
+        number: '1669',
+        imagePath: 'assets/images/sub_b/ambulance.png'),
+    HotlineItem(
+        name: 'กู้ภัย',
+        number: 'XXXX-XXXX',
+        imagePath: 'assets/images/sub_b/rescue.png'),
+    HotlineItem(
+        name: 'ดับเพลิง',
+        number: '199',
+        imagePath: 'assets/images/sub_b/fire.png'),
+    HotlineItem(
+        name: 'แจ้งอัคคีภัย',
+        number: '199',
+        imagePath: 'assets/images/sub_b/fire_alert.png'),
   ];
 
   @override

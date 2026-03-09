@@ -28,11 +28,11 @@ class _IntroductionCallUIState extends State<IntroductionCallUI> {
               width: 150,
               height: 150,
               decoration: BoxDecoration(
-                color: Colors.grey[200],
+                color: Colors.redAccent[100],
                 borderRadius: BorderRadius.circular(16),
               ),
-              child:
-                  const Icon(Icons.phone_in_talk, size: 80, color: Colors.grey),
+              child: const Icon(Icons.phone_in_talk,
+                  size: 80, color: Colors.black),
             ),
           ),
         ),
@@ -79,7 +79,7 @@ class _IntroductionCallUIState extends State<IntroductionCallUI> {
           const Text('เริ่มต้น', style: TextStyle(fontWeight: FontWeight.w600)),
       dotsDecorator: const DotsDecorator(
         size: Size(10.0, 10.0),
-        color: Color(0xFFBDBDBD),
+        color: Colors.transparent,
         activeSize: Size(22.0, 10.0),
         activeShape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(25.0)),

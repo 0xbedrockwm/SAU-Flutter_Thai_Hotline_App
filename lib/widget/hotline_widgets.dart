@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../screens/about_ui.dart';
 
-// ─── Model ───────────────────────────────────────────────────────────────────
-
 class HotlineItem {
   final String name;
   final String number;
@@ -16,14 +14,12 @@ class HotlineItem {
   });
 }
 
-// ─── Shared AppBar ────────────────────────────────────────────────────────────
-
 PreferredSizeWidget buildHotlineAppBar(
   BuildContext context, {
   VoidCallback? onInfoTap,
 }) {
   return AppBar(
-    backgroundColor: Colors.greenAccent,
+    backgroundColor: Colors.white12,
     elevation: 0,
     centerTitle: true,
     leading: Navigator.canPop(context)
@@ -52,8 +48,6 @@ PreferredSizeWidget buildHotlineAppBar(
   );
 }
 
-// ─── Banner Image Placeholder ─────────────────────────────────────────────────
-
 class BannerImagePlaceholder extends StatelessWidget {
   const BannerImagePlaceholder({super.key});
 
@@ -64,7 +58,7 @@ class BannerImagePlaceholder extends StatelessWidget {
       height: 160,
       margin: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.lightGreen,
+        color: Colors.grey[200],
         borderRadius: BorderRadius.circular(12),
         border: Border.all(color: Colors.grey[300]!),
       ),
@@ -72,8 +66,6 @@ class BannerImagePlaceholder extends StatelessWidget {
     );
   }
 }
-
-// ─── Hotline List Tile ────────────────────────────────────────────────────────
 
 class HotlineListTile extends StatelessWidget {
   final HotlineItem item;
@@ -105,7 +97,17 @@ class HotlineListTile extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
             border: Border.all(color: Colors.grey[300]!),
           ),
-          child: const Icon(Icons.image, size: 20, color: Colors.grey),
+          child: item.imagePath != null
+              ? ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: Image.asset(
+                    item.imagePath!,
+                    fit: BoxFit.cover,
+                    errorBuilder: (_, __, ___) =>
+                        const Icon(Icons.image, size: 20, color: Colors.grey),
+                  ),
+                )
+              : const Icon(Icons.image, size: 20, color: Colors.grey),
         ),
         title: Text(
           item.name,
@@ -123,8 +125,6 @@ class HotlineListTile extends StatelessWidget {
     );
   }
 }
-
-// ─── Sub Page Base ────────────────────────────────────────────────────────────
 
 class SubPageBase extends StatelessWidget {
   final String title;
@@ -176,7 +176,7 @@ class SubPageBase extends StatelessWidget {
               style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFF2C2C2C),
+                color: Colors.black45,
               ),
             ),
           ),

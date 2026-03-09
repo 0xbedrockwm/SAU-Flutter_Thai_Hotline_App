@@ -13,7 +13,7 @@ class _AboutUIState extends State<AboutUI> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: const Color(0xFFE0E0E0),
+        backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
@@ -49,12 +49,12 @@ class _AboutUIState extends State<AboutUI> {
                     style: TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.bold,
-                      color: Color(0xFF2C2C2C),
+                      color: Colors.black,
                     ),
                   ),
                   const SizedBox(height: 24),
 
-                  // University logo placeholder
+                  // SAU LOGO
                   Container(
                     width: 100,
                     height: 100,
@@ -76,7 +76,7 @@ class _AboutUIState extends State<AboutUI> {
                   ),
                   const SizedBox(height: 32),
 
-                  // Profile avatar
+                  // Profile Deverloper
                   CircleAvatar(
                     radius: 50,
                     backgroundColor: Colors.grey[300],
@@ -85,7 +85,7 @@ class _AboutUIState extends State<AboutUI> {
                   ),
                   const SizedBox(height: 20),
 
-                  // Student info
+                  // Student infomattion
                   _buildInfoRow('รหัสนักศึกษา', '6819M10002'),
                   _buildInfoRow('ชื่อ-นามสกุลนักศึกษา', 'วิษณุ มังคลา'),
                   _buildInfoRow('อีเมลนักศึกษา', 'S6819M10002@live.sau.ac.th'),
