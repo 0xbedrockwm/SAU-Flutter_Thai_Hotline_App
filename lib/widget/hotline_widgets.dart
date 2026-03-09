@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../screens/about_ui.dart';
 
+const Color kPrimaryColor = Colors.yellow;
+const Color kNumberColor = Colors.deepOrange;
+
 class HotlineItem {
   final String name;
   final String number;
@@ -19,7 +22,7 @@ PreferredSizeWidget buildHotlineAppBar(
   VoidCallback? onInfoTap,
 }) {
   return AppBar(
-    backgroundColor: const Color(0xFFE0E0E0),
+    backgroundColor: kPrimaryColor,
     elevation: 0,
     centerTitle: true,
     leading: Navigator.canPop(context)
@@ -81,7 +84,7 @@ class HotlineListTile extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Colors.greenAccent,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(color: Colors.grey[300]!),
       ),
@@ -108,11 +111,11 @@ class HotlineListTile extends StatelessWidget {
         ),
         title: Text(
           item.name,
-          style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
         ),
         subtitle: Text(
           item.number,
-          style: const TextStyle(fontSize: 12, color: Colors.grey),
+          style: const TextStyle(fontSize: 15, color: kNumberColor),
         ),
         trailing: IconButton(
           icon: const Icon(Icons.phone, color: Colors.black54),
@@ -156,7 +159,7 @@ class SubPageBase extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[50],
+      backgroundColor: const Color.fromARGB(255, 245, 221, 9),
       appBar: buildHotlineAppBar(
         context,
         onInfoTap: () {
