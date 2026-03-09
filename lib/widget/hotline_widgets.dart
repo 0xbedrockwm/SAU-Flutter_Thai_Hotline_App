@@ -19,7 +19,7 @@ PreferredSizeWidget buildHotlineAppBar(
   VoidCallback? onInfoTap,
 }) {
   return AppBar(
-    backgroundColor: Colors.white12,
+    backgroundColor: const Color(0xFFE0E0E0),
     elevation: 0,
     centerTitle: true,
     leading: Navigator.canPop(context)
@@ -39,10 +39,7 @@ PreferredSizeWidget buildHotlineAppBar(
     actions: [
       IconButton(
         icon: const Icon(Icons.info_outline, color: Colors.black),
-        onPressed: onInfoTap ??
-            () {
-              // will be overridden by context from SubPageBase
-            },
+        onPressed: onInfoTap ?? () {},
       ),
     ],
   );
@@ -131,6 +128,7 @@ class SubPageBase extends StatelessWidget {
   final List<HotlineItem> items;
   final int currentTabIndex;
   final ValueChanged<int> onTabChanged;
+  final String? bannerPath;
 
   const SubPageBase({
     super.key,
@@ -138,6 +136,7 @@ class SubPageBase extends StatelessWidget {
     required this.items,
     required this.currentTabIndex,
     required this.onTabChanged,
+    this.bannerPath,
   });
 
   static const List<String> _tabLabels = [
@@ -167,7 +166,27 @@ class SubPageBase extends StatelessWidget {
       ),
       body: Column(
         children: [
-          const BannerImagePlaceholder(),
+          Container(
+            width: double.infinity,
+            height: 160,
+            margin: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: Colors.grey[200],
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: Colors.grey[300]!),
+            ),
+            child: bannerPath != null
+                ? ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: Image.asset(
+                      bannerPath!,
+                      fit: BoxFit.cover,
+                      errorBuilder: (_, __, ___) =>
+                          const Icon(Icons.image, size: 48, color: Colors.grey),
+                    ),
+                  )
+                : const Icon(Icons.image, size: 48, color: Colors.grey),
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
             child: Text(
@@ -176,7 +195,7 @@ class SubPageBase extends StatelessWidget {
               style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
-                color: Colors.black45,
+                color: Color(0xFF2C2C2C),
               ),
             ),
           ),

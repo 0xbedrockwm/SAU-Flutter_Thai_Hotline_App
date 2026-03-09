@@ -54,6 +54,7 @@ class _SubDHomeUIState extends State<SubDHomeUI> {
     return SubPageBase(
       title: 'สายด่วน\nสาธารณูปโภค',
       items: _items,
+      bannerPath: 'assets/images/sub_d/banner.png',
       currentTabIndex: widget.currentTabIndex,
       onTabChanged: widget.onTabChanged,
     );

@@ -56,6 +56,7 @@ class _SubCHomeUIState extends State<SubCHomeUI> {
     return SubPageBase(
       title: 'สายด่วน\nธนาคาร',
       items: _items,
+      bannerPath: 'assets/images/sub_c/banner.png',
       currentTabIndex: widget.currentTabIndex,
       onTabChanged: widget.onTabChanged,
     );

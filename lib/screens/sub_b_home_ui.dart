@@ -54,10 +54,10 @@ class _SubBHomeUIState extends State<SubBHomeUI> {
   @override
   Widget build(BuildContext context) {
     return SubPageBase(
-      title: 'สายด่วน\nอุบัติเหตุ-เหตุฉุกเฉิน',
-      items: _items,
-      currentTabIndex: widget.currentTabIndex,
-      onTabChanged: widget.onTabChanged,
-    );
+        title: 'สายด่วน\nการเดินทาง',
+        items: _items,
+        bannerPath: 'assets/images/sub_a/banner.png',
+        currentTabIndex: widget.currentTabIndex,
+        onTabChanged: widget.onTabChanged);
   }
 }

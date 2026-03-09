@@ -56,6 +56,7 @@ class _SubAHomeUIState extends State<SubAHomeUI> {
     return SubPageBase(
       title: 'สายด่วน\nการเดินทาง',
       items: _items,
+      bannerPath: 'assets/images/sub_a/banner.png',
       currentTabIndex: widget.currentTabIndex,
       onTabChanged: widget.onTabChanged,
     );
