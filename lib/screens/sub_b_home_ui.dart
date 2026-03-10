@@ -22,32 +22,36 @@ class _SubBHomeUIState extends State<SubBHomeUI> {
         number: '191',
         imagePath: 'assets/images/sub_b/emergency.png'),
     HotlineItem(
+        name: 'แจ้งไฟไหม สัตว์เข้าบ้าน',
+        number: '199',
+        imagePath: 'assets/images/sub_b/safety_center.png'),
+    HotlineItem(
+        name: 'สายด่วนรถหาย(ตำรวจแห่งชาติ)',
+        number: '1192',
+        imagePath: 'assets/images/sub_b/medical.png'),
+    HotlineItem(
+        name: 'อุบัติเหตุทางน้ำ',
+        number: '1196',
+        imagePath: 'assets/images/sub_b/erawan.png'),
+    HotlineItem(
+        name: 'แจ้งคนหาย',
+        number: '1300',
+        imagePath: 'assets/images/sub_b/ambulance.png'),
+    HotlineItem(
         name: 'ศูนย์ปลอดภัยคมนาคม',
         number: '1356',
-        imagePath: 'assets/images/sub_b/safety_center.png'),
+        imagePath: 'assets/images/sub_b/rescue.png'),
     HotlineItem(
         name: 'หน่วยแพทย์กู้ชีพ',
         number: '1554',
-        imagePath: 'assets/images/sub_b/medical.png'),
+        imagePath: 'assets/images/sub_b/fire.png'),
     HotlineItem(
         name: 'ศูนย์เอราวัณ',
-        number: '1646',
-        imagePath: 'assets/images/sub_b/erawan.png'),
+        number: '1649',
+        imagePath: 'assets/images/sub_b/fire_alert.png'),
     HotlineItem(
         name: 'เจ็บป่วยฉุกเฉิน',
         number: '1669',
-        imagePath: 'assets/images/sub_b/ambulance.png'),
-    HotlineItem(
-        name: 'กู้ภัย',
-        number: 'XXXX-XXXX',
-        imagePath: 'assets/images/sub_b/rescue.png'),
-    HotlineItem(
-        name: 'ดับเพลิง',
-        number: '199',
-        imagePath: 'assets/images/sub_b/fire.png'),
-    HotlineItem(
-        name: 'แจ้งอัคคีภัย',
-        number: '199',
         imagePath: 'assets/images/sub_b/fire_alert.png'),
   ];
 

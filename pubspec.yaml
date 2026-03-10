@@ -40,4 +40,8 @@ flutter:
     - assets/icon/
     - assets/images/
     - assets/images/sub_a/
+    - assets/images/sub_b/
+    - assets/images/sub_c/
+    - assets/images/sub_d/
+
 

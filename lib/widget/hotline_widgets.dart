@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../screens/about_ui.dart';
 
-const Color kPrimaryColor = Colors.yellow;
-const Color kNumberColor = Colors.deepOrange;
+const Color kPrimaryColor = Colors.lightBlueAccent;
+const Color kNumberColor = Color(0xFFFF6600);
+
+// ─── Model ───────────────────────────────────────────────────────────────────
 
 class HotlineItem {
   final String name;
@@ -17,6 +19,8 @@ class HotlineItem {
   });
 }
 
+// ─── Shared AppBar ────────────────────────────────────────────────────────────
+
 PreferredSizeWidget buildHotlineAppBar(
   BuildContext context, {
   VoidCallback? onInfoTap,
@@ -27,7 +31,8 @@ PreferredSizeWidget buildHotlineAppBar(
     centerTitle: true,
     leading: Navigator.canPop(context)
         ? IconButton(
-            icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
+            icon: const Icon(Icons.arrow_back_ios_new_rounded,
+                color: Colors.black),
             onPressed: () => Navigator.pop(context),
           )
         : null,
@@ -36,36 +41,19 @@ PreferredSizeWidget buildHotlineAppBar(
       style: TextStyle(
         color: Colors.black,
         fontWeight: FontWeight.bold,
-        fontSize: 16,
+        fontSize: 25,
       ),
     ),
     actions: [
       IconButton(
-        icon: const Icon(Icons.info_outline, color: Colors.black),
+        icon: const Icon(Icons.info_sharp, color: Colors.black),
         onPressed: onInfoTap ?? () {},
       ),
     ],
   );
 }
 
-class BannerImagePlaceholder extends StatelessWidget {
-  const BannerImagePlaceholder({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: 160,
-      margin: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Colors.grey[200],
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.grey[300]!),
-      ),
-      child: const Icon(Icons.image, size: 48, color: Colors.grey),
-    );
-  }
-}
+// ─── Hotline List Tile ────────────────────────────────────────────────────────
 
 class HotlineListTile extends StatelessWidget {
   final HotlineItem item;
@@ -81,50 +69,76 @@ class HotlineListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
-      decoration: BoxDecoration(
-        color: Colors.greenAccent,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.grey[300]!),
-      ),
-      child: ListTile(
-        leading: Container(
-          width: 42,
-          height: 42,
-          decoration: BoxDecoration(
-            color: Colors.grey[200],
-            borderRadius: BorderRadius.circular(8),
-            border: Border.all(color: Colors.grey[300]!),
-          ),
-          child: item.imagePath != null
-              ? ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: Image.asset(
-                    item.imagePath!,
-                    fit: BoxFit.cover,
-                    errorBuilder: (_, __, ___) =>
-                        const Icon(Icons.image, size: 20, color: Colors.grey),
+    return GestureDetector(
+      onTap: () => _makeCall(item.number),
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: Colors.grey[300]!),
+        ),
+        child: Row(
+          children: [
+            Container(
+              width: 60,
+              height: 60,
+              margin: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Colors.grey[200],
+                borderRadius: BorderRadius.circular(8),
+                border: Border.all(color: Colors.grey[300]!),
+              ),
+              child: item.imagePath != null
+                  ? ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: Image.asset(
+                        item.imagePath!,
+                        fit: BoxFit.cover,
+                        errorBuilder: (_, __, ___) => const Icon(Icons.image,
+                            size: 28, color: Colors.redAccent),
+                      ),
+                    )
+                  : const Icon(Icons.image, size: 28, color: Colors.grey),
+            ),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    item.number,
+                    style: const TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      color: kNumberColor,
+                    ),
                   ),
-                )
-              : const Icon(Icons.image, size: 20, color: Colors.grey),
-        ),
-        title: Text(
-          item.name,
-          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
-        ),
-        subtitle: Text(
-          item.number,
-          style: const TextStyle(fontSize: 15, color: kNumberColor),
-        ),
-        trailing: IconButton(
-          icon: const Icon(Icons.phone, color: Colors.black54),
-          onPressed: () => _makeCall(item.number),
+                  const SizedBox(height: 2),
+                  Text(
+                    item.name,
+                    style: const TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.black87,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            IconButton(
+              icon: const Icon(Icons.phone_android_rounded,
+                  color: Colors.black54),
+              onPressed: () => _makeCall(item.number),
+            ),
+          ],
         ),
       ),
     );
   }
 }
+
+// ─── Sub Page Base ────────────────────────────────────────────────────────────
 
 class SubPageBase extends StatelessWidget {
   final String title;
@@ -159,7 +173,7 @@ class SubPageBase extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 245, 221, 9),
+      backgroundColor: Colors.grey[50],
       appBar: buildHotlineAppBar(
         context,
         onInfoTap: () {
@@ -184,8 +198,8 @@ class SubPageBase extends StatelessWidget {
                     child: Image.asset(
                       bannerPath!,
                       fit: BoxFit.cover,
-                      errorBuilder: (_, __, ___) =>
-                          const Icon(Icons.image, size: 48, color: Colors.grey),
+                      errorBuilder: (_, __, ___) => const Icon(Icons.image,
+                          size: 48, color: Colors.brown),
                     ),
                   )
                 : const Icon(Icons.image, size: 48, color: Colors.grey),
@@ -194,11 +208,11 @@ class SubPageBase extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
             child: Text(
               title,
-              textAlign: TextAlign.center,
+              textAlign: TextAlign.left,
               style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFF2C2C2C),
+                color: Colors.black,
               ),
             ),
           ),
@@ -216,8 +230,9 @@ class SubPageBase extends StatelessWidget {
         currentIndex: currentTabIndex,
         onTap: onTabChanged,
         type: BottomNavigationBarType.fixed,
+        backgroundColor: kPrimaryColor,
         selectedItemColor: Colors.black,
-        unselectedItemColor: Colors.grey,
+        unselectedItemColor: Colors.black54,
         selectedFontSize: 10,
         unselectedFontSize: 10,
         items: List.generate(

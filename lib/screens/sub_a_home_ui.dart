@@ -20,37 +20,45 @@ class SubAHomeUI extends StatefulWidget {
 class _SubAHomeUIState extends State<SubAHomeUI> {
   static const List<HotlineItem> _items = [
     HotlineItem(
-        name: 'ข้อมูลจราจร',
-        number: '1197',
-        imagePath: 'assets/images/sub_a/traffic_info.png'),
-    HotlineItem(
-        name: 'ตำรวจทางหลวง',
-        number: '1193',
-        imagePath: 'assets/images/sub_a/highway_police.png'),
+        name: 'กรมทางหลวงชนบท',
+        number: '1146',
+        imagePath: 'assets/images/sub_a/1146.png'),
     HotlineItem(
         name: 'ตำรวจท่องเที่ยว',
         number: '1155',
-        imagePath: 'assets/images/sub_a/tourist_police.png'),
+        imagePath: 'assets/images/sub_a/1155.png'),
+    HotlineItem(
+        name: 'ตำรวจทางหลวง',
+        number: '1193',
+        imagePath: 'assets/images/sub_a/1193.png'),
+    HotlineItem(
+        name: 'ข้อมูลจราจร',
+        number: '1197',
+        imagePath: 'assets/images/sub_a/1197.png'),
+    HotlineItem(
+        name: 'ขสมก.',
+        number: '1348',
+        imagePath: 'assets/images/sub_a/1348.png'),
+    HotlineItem(
+        name: 'บขส.',
+        number: '1490',
+        imagePath: 'assets/images/sub_a/1490.png'),
     HotlineItem(
         name: 'เส้นทางบนทางด่วน',
         number: '1543',
-        imagePath: 'assets/images/sub_a/expressway.png'),
+        imagePath: 'assets/images/sub_a/1543.png'),
     HotlineItem(
-        name: 'ขสมก.',
-        number: 'XXXX-XXXX',
-        imagePath: 'assets/images/sub_a/bmta.png'),
+        name: 'กรมทางหลวง',
+        number: '1586',
+        imagePath: 'assets/images/sub_a/1586.png'),
     HotlineItem(
-        name: 'บขส.',
-        number: 'XXXX-XXXX',
-        imagePath: 'assets/images/sub_a/bus.png'),
+        name: 'การรถไฟแห่งประเทศไทย',
+        number: '1690',
+        imagePath: 'assets/images/sub_a/1690.png'),
     HotlineItem(
-        name: 'รถไฟ',
-        number: 'XXXX-XXXX',
-        imagePath: 'assets/images/sub_a/train.png'),
-    HotlineItem(
-        name: 'สนามบิน',
-        number: 'XXXX-XXXX',
-        imagePath: 'assets/images/sub_a/airport.png'),
+        name: 'การบินไทย',
+        number: '023561111',
+        imagePath: 'assets/images/sub_a/023561111.png'),
   ];
 
   @override
