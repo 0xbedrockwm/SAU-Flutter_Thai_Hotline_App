@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+const Color kPrimary = Color(0xFF2D7D6F);
+const Color kPrimaryLight = Color(0xFFE8F5F3);
+const Color kTextDark = Color(0xFF1A1A2E);
+
 class AboutUI extends StatefulWidget {
   const AboutUI({super.key});
 
@@ -11,29 +15,30 @@ class _AboutUIState extends State<AboutUI> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0xFFF7F9F8),
       appBar: AppBar(
         backgroundColor: Colors.white,
-        elevation: 0,
+        elevation: 0.5,
+        shadowColor: Colors.black12,
+        centerTitle: true,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
+          icon: const Icon(Icons.arrow_back_ios, color: kTextDark),
           onPressed: () => Navigator.pop(context),
         ),
         title: const Text(
           'สายด่วน THAILAND',
           style: TextStyle(
-            color: Colors.black,
+            color: kTextDark,
             fontWeight: FontWeight.bold,
             fontSize: 16,
           ),
         ),
-        centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: ConstrainedBox(
           constraints: BoxConstraints(
             minHeight: MediaQuery.of(context).size.height -
-                AppBar().preferredSize.height -
+                56 -
                 MediaQuery.of(context).padding.top,
           ),
           child: Center(
@@ -47,26 +52,36 @@ class _AboutUIState extends State<AboutUI> {
                   const Text(
                     'ผู้จัดทำ',
                     style: TextStyle(
-                      fontSize: 22,
+                      fontSize: 26,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black,
+                      color: kPrimary,
                     ),
                   ),
                   const SizedBox(height: 24),
 
-                  // SAU LOGO
+                  // SAU Logo
                   Container(
                     width: 100,
                     height: 100,
                     decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(color: Colors.grey[300]!),
+                      borderRadius: BorderRadius.circular(16),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.08),
+                          blurRadius: 10,
+                          offset: const Offset(0, 4),
+                        ),
+                      ],
                     ),
-                    child: Image.network(
-                      'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Logosau-02.png/250px-Logosau-02.png',
-                      width: 80,
-                      height: 80,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(16),
+                      child: Image.network(
+                        'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Logosau-02.png/250px-Logosau-02.png',
+                        fit: BoxFit.contain,
+                        errorBuilder: (_, __, ___) => const Icon(Icons.school,
+                            size: 50, color: Colors.grey),
+                      ),
                     ),
                   ),
                   const SizedBox(height: 8),
@@ -76,21 +91,47 @@ class _AboutUIState extends State<AboutUI> {
                   ),
                   const SizedBox(height: 32),
 
-                  // Profile Deverloper
-                  CircleAvatar(
-                    radius: 50,
-                    backgroundColor: Colors.grey[300],
-                    child:
-                        const Icon(Icons.person, size: 50, color: Colors.grey),
+                  // Profile avatar
+                  Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(color: kPrimary, width: 3),
+                    ),
+                    child: CircleAvatar(
+                      radius: 50,
+                      backgroundColor: kPrimaryLight,
+                      child:
+                          const Icon(Icons.person, size: 50, color: kPrimary),
+                    ),
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 24),
 
-                  // Student infomattion
-                  _buildInfoRow('รหัสนักศึกษา', '6819M10002'),
-                  _buildInfoRow('ชื่อ-นามสกุลนักศึกษา', 'วิษณุ มังคลา'),
-                  _buildInfoRow('อีเมลนักศึกษา', 'S6819M10002@live.sau.ac.th'),
-                  _buildInfoRow('ชื่อสาขาวิชา', 'วิศวกรรมคอมพิวเตอร์'),
-                  _buildInfoRow('ชื่อคณะ', 'วิศวกรรมศาสตร์'),
+                  // Student info card
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(16),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.06),
+                          blurRadius: 10,
+                          offset: const Offset(0, 3),
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      children: [
+                        _buildInfoRow('รหัสนักศึกษา', '6819M10002'),
+                        _buildInfoRow('ชื่อ-นามสกุลนักศึกษา', 'วิษณุ มังคลา'),
+                        _buildInfoRow(
+                            'อีเมลนักศึกษา', 'S6819M10002@live.sau.ac.th'),
+                        _buildInfoRow('ชื่อสาขาวิชา', 'วิศวกรรมคอมพิวเตอร์'),
+                        _buildInfoRow('ชื่อคณะ', 'วิศวกรรมศาสตร์'),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -103,10 +144,24 @@ class _AboutUIState extends State<AboutUI> {
   Widget _buildInfoRow(String label, String value) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 6),
-      child: Text(
-        '$label: $value',
-        style: const TextStyle(fontSize: 14, color: Colors.black87),
-        textAlign: TextAlign.center,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            '$label: ',
+            style: const TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+              color: kPrimary,
+            ),
+          ),
+          Expanded(
+            child: Text(
+              value,
+              style: const TextStyle(fontSize: 14, color: kTextDark),
+            ),
+          ),
+        ],
       ),
     );
   }

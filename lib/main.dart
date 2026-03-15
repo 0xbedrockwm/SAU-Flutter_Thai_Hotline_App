@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'screens/introduction_call_ui.dart';
+import 'screens/splash_screen_ui.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,11 +14,10 @@ class MyApp extends StatelessWidget {
       title: 'สายด่วน THAILAND',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFFFF6B35)),
         useMaterial3: true,
-        fontFamily: 'Sarabun',
       ),
-      home: const IntroductionCallUI(),
+      home: const SplashScreenUI(),
     );
   }
 }

@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../screens/about_ui.dart';
 
-const Color kPrimaryColor = Colors.lightBlueAccent;
-const Color kNumberColor = Color(0xFFFF6600);
+const Color kPrimary = Color(0xFF2D7D6F); // เขียว
+const Color kPrimaryLight = Color(0xFFE8F5F3); // เขียวอ่อน
+const Color kAccent = Color(0xFF4CAF93); // เขียวสด
+const Color kTextDark = Color(0xFF1A1A2E); // ดำเข้ม
+const Color kTextGrey = Color(0xFF888888); // เทา
 
 // ─── Model ───────────────────────────────────────────────────────────────────
 
@@ -19,34 +22,34 @@ class HotlineItem {
   });
 }
 
-// ─── Shared AppBar ────────────────────────────────────────────────────────────
+// ─── AppBar ───────────────────────────────────────────────────────────────────
 
 PreferredSizeWidget buildHotlineAppBar(
   BuildContext context, {
   VoidCallback? onInfoTap,
 }) {
   return AppBar(
-    backgroundColor: kPrimaryColor,
-    elevation: 0,
+    backgroundColor: Colors.white,
+    elevation: 0.5,
+    shadowColor: Colors.black12,
     centerTitle: true,
     leading: Navigator.canPop(context)
         ? IconButton(
-            icon: const Icon(Icons.arrow_back_ios_new_rounded,
-                color: Colors.black),
+            icon: const Icon(Icons.arrow_back_ios, color: kTextDark),
             onPressed: () => Navigator.pop(context),
           )
         : null,
     title: const Text(
       'สายด่วน THAILAND',
       style: TextStyle(
-        color: Colors.black,
+        color: kTextDark,
         fontWeight: FontWeight.bold,
-        fontSize: 25,
+        fontSize: 16,
       ),
     ),
     actions: [
       IconButton(
-        icon: const Icon(Icons.info_sharp, color: Colors.black),
+        icon: const Icon(Icons.info_outline, color: kPrimary),
         onPressed: onInfoTap ?? () {},
       ),
     ],
@@ -72,66 +75,68 @@ class HotlineListTile extends StatelessWidget {
     return GestureDetector(
       onTap: () => _makeCall(item.number),
       child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
+        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: Colors.grey[300]!),
-        ),
-        child: Row(
-          children: [
-            Container(
-              width: 60,
-              height: 60,
-              margin: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: Colors.grey[200],
-                borderRadius: BorderRadius.circular(8),
-                border: Border.all(color: Colors.grey[300]!),
-              ),
-              child: item.imagePath != null
-                  ? ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: Image.asset(
-                        item.imagePath!,
-                        fit: BoxFit.cover,
-                        errorBuilder: (_, __, ___) => const Icon(Icons.image,
-                            size: 28, color: Colors.redAccent),
-                      ),
-                    )
-                  : const Icon(Icons.image, size: 28, color: Colors.grey),
-            ),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    item.number,
-                    style: const TextStyle(
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                      color: kNumberColor,
-                    ),
-                  ),
-                  const SizedBox(height: 2),
-                  Text(
-                    item.name,
-                    style: const TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.black87,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            IconButton(
-              icon: const Icon(Icons.phone_android_rounded,
-                  color: Colors.black54),
-              onPressed: () => _makeCall(item.number),
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.06),
+              blurRadius: 10,
+              offset: const Offset(0, 3),
             ),
           ],
+        ),
+        child: ListTile(
+          contentPadding:
+              const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+          leading: Container(
+            width: 50,
+            height: 50,
+            decoration: BoxDecoration(
+              color: kPrimaryLight,
+              borderRadius: BorderRadius.circular(14),
+            ),
+            child: item.imagePath != null
+                ? ClipRRect(
+                    borderRadius: BorderRadius.circular(14),
+                    child: Image.asset(
+                      item.imagePath!,
+                      fit: BoxFit.cover,
+                      errorBuilder: (_, __, ___) => const Icon(
+                        Icons.phone_in_talk,
+                        size: 26,
+                        color: kPrimary,
+                      ),
+                    ),
+                  )
+                : const Icon(Icons.phone_in_talk, size: 26, color: kPrimary),
+          ),
+          title: Text(
+            item.name,
+            style: const TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.w600,
+              color: kTextDark,
+            ),
+          ),
+          subtitle: Text(
+            item.number,
+            style: const TextStyle(
+              fontSize: 13,
+              color: kPrimary,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          trailing: Container(
+            width: 32,
+            height: 32,
+            decoration: BoxDecoration(
+              color: kPrimaryLight,
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: const Icon(Icons.chevron_right, color: kPrimary, size: 20),
+          ),
         ),
       ),
     );
@@ -158,22 +163,22 @@ class SubPageBase extends StatelessWidget {
 
   static const List<String> _tabLabels = [
     'การเดินทาง',
-    'อุบัติเหตุ-เหตุฉุกเฉิน',
+    'ฉุกเฉิน',
     'ธนาคาร',
     'สาธารณูปโภค',
   ];
 
   static const List<IconData> _tabIcons = [
-    Icons.directions_car,
-    Icons.local_hospital,
-    Icons.account_balance,
-    Icons.electrical_services,
+    Icons.directions_car_outlined,
+    Icons.local_hospital_outlined,
+    Icons.account_balance_outlined,
+    Icons.electrical_services_outlined,
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[50],
+      backgroundColor: const Color(0xFFF7F9F8),
       appBar: buildHotlineAppBar(
         context,
         onInfoTap: () {
@@ -182,41 +187,69 @@ class SubPageBase extends StatelessWidget {
         },
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // Banner
           Container(
             width: double.infinity,
             height: 160,
             margin: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: Colors.grey[200],
-              borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: Colors.grey[300]!),
+              borderRadius: BorderRadius.circular(20),
+              color: kPrimary,
+              boxShadow: [
+                BoxShadow(
+                  color: kPrimary.withOpacity(0.3),
+                  blurRadius: 12,
+                  offset: const Offset(0, 4),
+                ),
+              ],
             ),
             child: bannerPath != null
                 ? ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(20),
                     child: Image.asset(
                       bannerPath!,
                       fit: BoxFit.cover,
-                      errorBuilder: (_, __, ___) => const Icon(Icons.image,
-                          size: 48, color: Colors.brown),
+                      errorBuilder: (_, __, ___) => Center(
+                        child: Text(
+                          title,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
                     ),
                   )
-                : const Icon(Icons.image, size: 48, color: Colors.grey),
+                : Center(
+                    child: Text(
+                      title,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
           ),
+          // Title
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
             child: Text(
-              title,
-              textAlign: TextAlign.left,
+              title.replaceAll('\n', ' '),
               style: const TextStyle(
-                fontSize: 20,
+                fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: Colors.black,
+                color: kTextDark,
               ),
             ),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 4),
+          // List
           Expanded(
             child: ListView.builder(
               padding: const EdgeInsets.only(bottom: 16),
@@ -230,11 +263,12 @@ class SubPageBase extends StatelessWidget {
         currentIndex: currentTabIndex,
         onTap: onTabChanged,
         type: BottomNavigationBarType.fixed,
-        backgroundColor: kPrimaryColor,
-        selectedItemColor: Colors.black,
-        unselectedItemColor: Colors.black54,
+        backgroundColor: Colors.white,
+        selectedItemColor: kPrimary,
+        unselectedItemColor: kTextGrey,
         selectedFontSize: 10,
         unselectedFontSize: 10,
+        elevation: 8,
         items: List.generate(
           4,
           (i) => BottomNavigationBarItem(

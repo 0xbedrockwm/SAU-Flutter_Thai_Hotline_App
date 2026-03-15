@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'home_ui.dart';
+import 'introduction_call_ui.dart';
 
 class SplashScreenUI extends StatefulWidget {
   const SplashScreenUI({super.key});
@@ -12,14 +12,14 @@ class _SplashScreenUIState extends State<SplashScreenUI> {
   @override
   void initState() {
     super.initState();
-    _navigateToHome();
+    _navigateToIntro();
   }
 
-  Future<void> _navigateToHome() async {
+  Future<void> _navigateToIntro() async {
     await Future.delayed(const Duration(seconds: 3));
     if (mounted) {
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (_) => const HomeUI()),
+        MaterialPageRoute(builder: (_) => const IntroductionCallUI()),
       );
     }
   }
@@ -27,42 +27,47 @@ class _SplashScreenUIState extends State<SplashScreenUI> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey,
+      backgroundColor: const Color(0xFF2D7D6F),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              width: 160,
-              height: 160,
+              width: 120,
+              height: 120,
               decoration: BoxDecoration(
-                color: Colors.grey,
-                borderRadius: BorderRadius.circular(20),
+                color: Colors.white24,
+                borderRadius: BorderRadius.circular(30),
               ),
-              child:
-                  const Icon(Icons.phone_in_talk, size: 80, color: Colors.grey),
+              padding: const EdgeInsets.all(16),
+              child: Image.asset(
+                'assets/images/label_app.png',
+                fit: BoxFit.contain,
+                errorBuilder: (_, __, ___) => const Icon(
+                  Icons.phone_in_talk,
+                  size: 70,
+                  color: Colors.white,
+                ),
+              ),
             ),
             const SizedBox(height: 32),
             const Text(
               'THAI HOTLINE APP',
               style: TextStyle(
-                fontSize: 22,
+                fontSize: 24,
                 fontWeight: FontWeight.bold,
-                color: Colors.black,
-                letterSpacing: 1.2,
+                color: Colors.white,
+                letterSpacing: 1.5,
               ),
             ),
             const SizedBox(height: 8),
             const Text(
-              'สายด่วน',
-              style: TextStyle(
-                fontSize: 18,
-                color: Colors.black,
-              ),
+              'สายด่วน THAILAND',
+              style: TextStyle(fontSize: 16, color: Colors.white70),
             ),
             const SizedBox(height: 48),
             const CircularProgressIndicator(
-              color: Colors.black,
+              color: Colors.white,
               strokeWidth: 2,
             ),
           ],
