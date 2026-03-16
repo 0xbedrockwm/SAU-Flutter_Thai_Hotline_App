@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 
-const Color kPrimary = Color(0xFF2D7D6F);
-const Color kPrimaryLight = Color(0xFFE8F5F3);
-const Color kTextDark = Color(0xFF1A1A2E);
-
 class AboutUI extends StatefulWidget {
   const AboutUI({super.key});
 
@@ -15,22 +11,32 @@ class _AboutUIState extends State<AboutUI> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF7F9F8),
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0.5,
-        shadowColor: Colors.black12,
-        centerTitle: true,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios, color: kTextDark),
-          onPressed: () => Navigator.pop(context),
-        ),
-        title: const Text(
-          'สายด่วน THAILAND',
-          style: TextStyle(
-            color: kTextDark,
-            fontWeight: FontWeight.bold,
-            fontSize: 16,
+      backgroundColor: const Color(0xFFF7F7F7),
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(56),
+        child: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Color(0xFFFF6B35), Color(0xFFE91E8C)],
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+            ),
+          ),
+          child: AppBar(
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            centerTitle: true,
+            leading: IconButton(
+              icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
+              onPressed: () => Navigator.pop(context),
+            ),
+            title: const Text(
+              'สายด่วน THAILAND',
+              style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16),
+            ),
           ),
         ),
       ),
@@ -49,17 +55,19 @@ class _AboutUIState extends State<AboutUI> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const SizedBox(height: 12),
-                  const Text(
-                    'ผู้จัดทำ',
-                    style: TextStyle(
-                      fontSize: 26,
-                      fontWeight: FontWeight.bold,
-                      color: kPrimary,
+                  ShaderMask(
+                    shaderCallback: (bounds) => const LinearGradient(
+                      colors: [Color(0xFFFF6B35), Color(0xFFE91E8C)],
+                    ).createShader(bounds),
+                    child: const Text(
+                      'ผู้จัดทำ',
+                      style: TextStyle(
+                          fontSize: 26,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
                     ),
                   ),
                   const SizedBox(height: 24),
-
-                  // SAU Logo
                   Container(
                     width: 100,
                     height: 100,
@@ -68,10 +76,9 @@ class _AboutUIState extends State<AboutUI> {
                       borderRadius: BorderRadius.circular(16),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.08),
-                          blurRadius: 10,
-                          offset: const Offset(0, 4),
-                        ),
+                            color: Colors.black.withOpacity(0.08),
+                            blurRadius: 10,
+                            offset: const Offset(0, 4)),
                       ],
                     ),
                     child: ClipRRect(
@@ -85,28 +92,33 @@ class _AboutUIState extends State<AboutUI> {
                     ),
                   ),
                   const SizedBox(height: 8),
-                  const Text(
-                    'มหาวิทยาลัยเอเชียอาคเนย์',
-                    style: TextStyle(fontSize: 14, color: Colors.black87),
-                  ),
+                  const Text('มหาวิทยาลัยเอเชียอาคเนย์',
+                      style: TextStyle(fontSize: 14, color: Colors.black87)),
                   const SizedBox(height: 32),
-
-                  // Profile avatar
                   Container(
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      border: Border.all(color: kPrimary, width: 3),
+                      gradient: const LinearGradient(
+                        colors: [Color(0xFFFF6B35), Color(0xFFE91E8C)],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                            color: const Color(0xFFE91E8C).withOpacity(0.3),
+                            blurRadius: 12,
+                            offset: const Offset(0, 4)),
+                      ],
                     ),
+                    padding: const EdgeInsets.all(3),
                     child: CircleAvatar(
                       radius: 50,
-                      backgroundColor: kPrimaryLight,
-                      child:
-                          const Icon(Icons.person, size: 50, color: kPrimary),
+                      backgroundColor: Colors.grey[200],
+                      child: const Icon(Icons.person,
+                          size: 50, color: Colors.grey),
                     ),
                   ),
                   const SizedBox(height: 24),
-
-                  // Student info card
                   Container(
                     width: double.infinity,
                     padding: const EdgeInsets.all(20),
@@ -115,10 +127,9 @@ class _AboutUIState extends State<AboutUI> {
                       borderRadius: BorderRadius.circular(16),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.06),
-                          blurRadius: 10,
-                          offset: const Offset(0, 3),
-                        ),
+                            color: Colors.black.withOpacity(0.06),
+                            blurRadius: 10,
+                            offset: const Offset(0, 3)),
                       ],
                     ),
                     child: Column(
@@ -150,16 +161,13 @@ class _AboutUIState extends State<AboutUI> {
           Text(
             '$label: ',
             style: const TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w600,
-              color: kPrimary,
-            ),
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+                color: Color(0xFFFF6B35)),
           ),
           Expanded(
-            child: Text(
-              value,
-              style: const TextStyle(fontSize: 14, color: kTextDark),
-            ),
+            child: Text(value,
+                style: const TextStyle(fontSize: 14, color: Color(0xFF1A1A2E))),
           ),
         ],
       ),

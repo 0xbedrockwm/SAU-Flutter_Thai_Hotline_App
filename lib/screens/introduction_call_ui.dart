@@ -21,9 +21,13 @@ class _IntroductionCallUIState extends State<IntroductionCallUI> {
       child: Container(
         width: 260,
         height: 260,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           shape: BoxShape.circle,
-          color: const Color(0xFF2D7D6F).withOpacity(0.15),
+          gradient: LinearGradient(
+            colors: [Color(0xFFFF6B35), Color(0xFFE91E8C)],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
         ),
         padding: const EdgeInsets.all(24),
         child: Image.asset(
@@ -32,7 +36,7 @@ class _IntroductionCallUIState extends State<IntroductionCallUI> {
           errorBuilder: (_, __, ___) => const Icon(
             Icons.phone_in_talk,
             size: 80,
-            color: Color(0xFF2D7D6F),
+            color: Colors.white,
           ),
         ),
       ),
@@ -41,78 +45,103 @@ class _IntroductionCallUIState extends State<IntroductionCallUI> {
 
   @override
   Widget build(BuildContext context) {
-    return IntroductionScreen(
-      globalBackgroundColor: Colors.white,
-      pages: [
-        PageViewModel(
-          titleWidget: const Text(
-            'สายด่วน THAILAND',
-            style: TextStyle(
-              fontSize: 26,
-              fontWeight: FontWeight.bold,
-              color: Color(0xFF2D7D6F),
-            ),
-            textAlign: TextAlign.center,
-          ),
-          bodyWidget: const Text(
-            'แอปพลิเคชันรวมสายด่วนฉุกเฉินของประเทศไทย\nครบครันในที่เดียว',
-            style: TextStyle(fontSize: 15, color: Color(0xFF888888)),
-            textAlign: TextAlign.center,
-          ),
-          image: _buildImage('assets/images/label_app.png'),
+    return Container(
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          colors: [Color(0xFFFF6B35), Color(0xFFE91E8C)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
         ),
-        PageViewModel(
-          titleWidget: const Text(
-            'สายด่วนการเดินทาง',
-            style: TextStyle(
-              fontSize: 26,
-              fontWeight: FontWeight.bold,
-              color: Color(0xFF2D7D6F),
+      ),
+      child: IntroductionScreen(
+        globalBackgroundColor: Colors.transparent,
+        pages: [
+          PageViewModel(
+            titleWidget: const Text(
+              'สายด่วน THAILAND',
+              style: TextStyle(
+                  fontSize: 26,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
+              textAlign: TextAlign.center,
             ),
-            textAlign: TextAlign.center,
-          ),
-          bodyWidget: const Text(
-            'รวมเบอร์โทรฉุกเฉินด้านการเดินทาง\nตำรวจ ทางหลวง และอื่นๆ',
-            style: TextStyle(fontSize: 15, color: Color(0xFF888888)),
-            textAlign: TextAlign.center,
-          ),
-          image: _buildImage('assets/images/intro.png'),
-        ),
-        PageViewModel(
-          titleWidget: const Text(
-            'สายด่วนฉุกเฉิน',
-            style: TextStyle(
-              fontSize: 26,
-              fontWeight: FontWeight.bold,
-              color: Color(0xFF2D7D6F),
+            bodyWidget: const Text(
+              'แอปพลิเคชันรวมสายด่วนฉุกเฉินของประเทศไทย\nครบครันในที่เดียว',
+              style: TextStyle(fontSize: 15, color: Colors.white70),
+              textAlign: TextAlign.center,
             ),
-            textAlign: TextAlign.center,
+            image: _buildImage('assets/images/label_app.png'),
           ),
-          bodyWidget: const Text(
-            'เบอร์โทรอุบัติเหตุและเหตุฉุกเฉิน\nพร้อมให้บริการตลอด 24 ชั่วโมง',
-            style: TextStyle(fontSize: 15, color: Color(0xFF888888)),
-            textAlign: TextAlign.center,
+          PageViewModel(
+            titleWidget: const Text(
+              'สายด่วนการเดินทาง',
+              style: TextStyle(
+                  fontSize: 26,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
+              textAlign: TextAlign.center,
+            ),
+            bodyWidget: const Text(
+              'รวมเบอร์โทรฉุกเฉินด้านการเดินทาง\nตำรวจ ทางหลวง และอื่นๆ',
+              style: TextStyle(fontSize: 15, color: Colors.white70),
+              textAlign: TextAlign.center,
+            ),
+            image: _buildImage('assets/images/intro.png'),
           ),
-          image: _buildImage('assets/images/intro.png'),
+          PageViewModel(
+            titleWidget: const Text(
+              'สายด่วนฉุกเฉิน',
+              style: TextStyle(
+                  fontSize: 26,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
+              textAlign: TextAlign.center,
+            ),
+            bodyWidget: const Text(
+              'เบอร์โทรอุบัติเหตุและเหตุฉุกเฉิน\nพร้อมให้บริการตลอด 24 ชั่วโมง',
+              style: TextStyle(fontSize: 15, color: Colors.white70),
+              textAlign: TextAlign.center,
+            ),
+            image: _buildImage('assets/images/intro.png'),
+          ),
+        ],
+        onDone: _onDone,
+        onSkip: _onDone,
+        showSkipButton: true,
+        skip: const Text('Skip',
+            style: TextStyle(fontWeight: FontWeight.w600, color: Colors.white)),
+        next: const Icon(Icons.arrow_forward, color: Colors.white),
+        done: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(30),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.2),
+                blurRadius: 12,
+                offset: const Offset(0, 4),
+              ),
+            ],
+          ),
+          child: const Text(
+            'GET STARTED',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 14,
+              color: Color(0xFFE91E8C),
+              letterSpacing: 1.2,
+            ),
+          ),
         ),
-      ],
-      onDone: _onDone,
-      onSkip: _onDone,
-      showSkipButton: true,
-      skip: const Text('ข้าม',
-          style:
-              TextStyle(fontWeight: FontWeight.w600, color: Color(0xFF2D7D6F))),
-      next: const Icon(Icons.arrow_forward, color: Color(0xFF2D7D6F)),
-      done: const Text('เริ่มต้น',
-          style:
-              TextStyle(fontWeight: FontWeight.w600, color: Color(0xFF2D7D6F))),
-      dotsDecorator: const DotsDecorator(
-        size: Size(8, 8),
-        color: Color(0xFFCCCCCC),
-        activeColor: Color(0xFF2D7D6F),
-        activeSize: Size(22, 8),
-        activeShape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(25)),
+        dotsDecorator: const DotsDecorator(
+          size: Size(8, 8),
+          color: Colors.white38,
+          activeColor: Colors.white,
+          activeSize: Size(22, 8),
+          activeShape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(25)),
+          ),
         ),
       ),
     );
