@@ -124,8 +124,16 @@ class _AboutUIState extends State<AboutUI> {
                     child: CircleAvatar(
                       radius: 50,
                       backgroundColor: Colors.grey[200],
-                      child: const Icon(Icons.person,
-                          size: 50, color: Colors.grey),
+                      child: ClipOval(
+                        child: Image.asset(
+                          'assets/images/person.png',
+                          width: 100,
+                          height: 100,
+                          fit: BoxFit.cover,
+                          errorBuilder: (_, __, ___) => const Icon(Icons.person,
+                              size: 50, color: Colors.grey),
+                        ),
+                      ),
                     ),
                   ),
                   const SizedBox(height: 24),
