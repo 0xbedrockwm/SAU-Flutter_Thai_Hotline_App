@@ -35,20 +35,32 @@ class _SubCHomeUIState extends State<SubCHomeUI> {
         imagePath: 'assets/images/sub_c/kbank.png'),
     HotlineItem(
         name: 'ธนาคารไทยพาณิชย์',
-        number: 'XXXX-XXXX',
+        number: '02 777 7777',
         imagePath: 'assets/images/sub_c/scb.png'),
     HotlineItem(
         name: 'ธนาคารออมสิน',
-        number: 'XXXX-XXXX',
+        number: '02 299 8000',
         imagePath: 'assets/images/sub_c/gsb.png'),
     HotlineItem(
         name: 'ธนาคาร UOB',
-        number: 'XXXX-XXXX',
+        number: '02 285 1555',
         imagePath: 'assets/images/sub_c/uob.png'),
     HotlineItem(
         name: 'ธนาคาร LH Bank',
         number: '1327',
         imagePath: 'assets/images/sub_c/lhbank.png'),
+    HotlineItem(
+        name: 'ธนาคาร Citi Bank',
+        number: '1877 248 4237',
+        imagePath: 'assets/images/sub_c/citibank.png'),
+    HotlineItem(
+        name: 'ธนาคาร TTB Bank',
+        number: '1428',
+        imagePath: 'assets/images/sub_c/ttb.png'),
+    HotlineItem(
+        name: 'ธนาคาร CIMB Bank',
+        number: '1428',
+        imagePath: 'assets/images/sub_c/cimb.png'),
   ];
 
   @override

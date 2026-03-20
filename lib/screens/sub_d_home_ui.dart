@@ -19,11 +19,11 @@ class _SubDHomeUIState extends State<SubDHomeUI> {
   static const List<HotlineItem> _items = [
     HotlineItem(
         name: 'การไฟฟ้านครหลวง',
-        number: '0-2111-1111',
+        number: '1130',
         imagePath: 'assets/images/sub_d/mea.png'),
     HotlineItem(
         name: 'การไฟฟ้าส่วนภูมิภาค',
-        number: '1333',
+        number: '1129',
         imagePath: 'assets/images/sub_d/pea.png'),
     HotlineItem(
         name: 'การไฟฟ้าฝ่ายผลิต',
@@ -31,22 +31,26 @@ class _SubDHomeUIState extends State<SubDHomeUI> {
         imagePath: 'assets/images/sub_d/egat.png'),
     HotlineItem(
         name: 'การประปานครหลวง',
-        number: '0-2888-8888',
+        number: '1125',
         imagePath: 'assets/images/sub_d/mwa.png'),
     HotlineItem(
         name: 'การประปาส่วนภูมิภาค',
-        number: 'XXXX-XXXX',
+        number: '1662',
         imagePath: 'assets/images/sub_d/pwa.png'),
     HotlineItem(
         name: 'True',
         number: '1242',
         imagePath: 'assets/images/sub_d/true.png'),
     HotlineItem(
-        name: 'DTAC (AIS)',
+        name: 'DTAC',
         number: '1678',
-        imagePath: 'assets/images/sub_d/ais.png'),
+        imagePath: 'assets/images/sub_d/dtac.png'),
     HotlineItem(
-        name: 'TOT', number: '1100', imagePath: 'assets/images/sub_d/tot.png'),
+        name: 'AIS', number: '1175', imagePath: 'assets/images/sub_d/ais.png'),
+    HotlineItem(
+        name: 'NTPLC',
+        number: '1100',
+        imagePath: 'assets/images/sub_d/ntpcl.png'),
   ];
 
   @override

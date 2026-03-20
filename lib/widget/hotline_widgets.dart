@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../screens/about_ui.dart';
 
-const Color kPrimaryStart = Color(0xFFFF6B35);
-const Color kPrimaryEnd = Color(0xFFE91E8C);
-const Color kPrimary = Color(0xFFE91E8C);
-const Color kPrimaryLight = Color(0xFFFFEBF5);
-const Color kAccentRed = Color(0xFFE53935);
-const Color kTextDark = Color(0xFF1A1A2E);
-const Color kTextGrey = Color(0xFF888888);
+const Color kPrimaryStart = Color.fromARGB(255, 107, 45, 22);
+const Color kPrimaryEnd = Color.fromARGB(255, 71, 15, 46);
+const Color kPrimary = Color.fromARGB(255, 68, 21, 47);
+const Color kPrimaryLight = Color.fromARGB(255, 255, 246, 235);
+const Color kAccentRed = Color.fromARGB(255, 201, 61, 58);
+const Color kTextDark = Color.fromARGB(255, 49, 49, 77);
+const Color kTextGrey = Color.fromARGB(255, 34, 28, 28);
 
 // ─── Model ───────────────────────────────────────────────────────────────────
 
@@ -205,6 +205,7 @@ class SubPageBase extends StatelessWidget {
   final int currentTabIndex;
   final ValueChanged<int> onTabChanged;
   final String? bannerPath;
+  final Widget? headerWidget;
 
   const SubPageBase({
     super.key,
@@ -213,6 +214,7 @@ class SubPageBase extends StatelessWidget {
     required this.currentTabIndex,
     required this.onTabChanged,
     this.bannerPath,
+    this.headerWidget,
   });
 
   static const List<String> _tabLabels = [
@@ -308,8 +310,12 @@ class SubPageBase extends StatelessWidget {
           Expanded(
             child: ListView.builder(
               padding: const EdgeInsets.only(bottom: 16),
-              itemCount: items.length,
-              itemBuilder: (_, i) => HotlineListTile(item: items[i]),
+              itemCount: items.length + (headerWidget != null ? 1 : 0),
+              itemBuilder: (_, i) {
+                if (headerWidget != null && i == 0) return headerWidget!;
+                final item = items[headerWidget != null ? i - 1 : i];
+                return HotlineListTile(item: item);
+              },
             ),
           ),
         ],

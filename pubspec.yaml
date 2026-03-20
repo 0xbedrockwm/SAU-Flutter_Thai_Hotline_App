@@ -19,6 +19,7 @@ dependencies:
   latlong2: ^0.9.1
   carousel_slider: ^5.1.2
   introduction_screen: ^3.1.12
+  material_symbols_icons: ^4.2719.1
 
   
 

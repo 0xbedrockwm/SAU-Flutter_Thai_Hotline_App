@@ -13,33 +13,46 @@ class HomeUI extends StatefulWidget {
 
 class _HomeUIState extends State<HomeUI> {
   int _currentIndex = 0;
+  late final PageController _pageController;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController(initialPage: _currentIndex);
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
 
   void _onTabChanged(int index) {
     setState(() => _currentIndex = index);
+    _pageController.animateToPage(
+      index,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
   }
 
-  Widget get _currentPage {
-    switch (_currentIndex) {
-      case 0:
-        return SubAHomeUI(
-            currentTabIndex: _currentIndex, onTabChanged: _onTabChanged);
-      case 1:
-        return SubBHomeUI(
-            currentTabIndex: _currentIndex, onTabChanged: _onTabChanged);
-      case 2:
-        return SubCHomeUI(
-            currentTabIndex: _currentIndex, onTabChanged: _onTabChanged);
-      case 3:
-        return SubDHomeUI(
-            currentTabIndex: _currentIndex, onTabChanged: _onTabChanged);
-      default:
-        return SubAHomeUI(
-            currentTabIndex: _currentIndex, onTabChanged: _onTabChanged);
-    }
+  void _onPageChanged(int index) {
+    setState(() => _currentIndex = index);
   }
 
   @override
   Widget build(BuildContext context) {
-    return _currentPage;
+    return PageView(
+      controller: _pageController,
+      onPageChanged: _onPageChanged,
+      physics: const PageScrollPhysics(),
+      scrollDirection: Axis.horizontal,
+      children: [
+        SubAHomeUI(currentTabIndex: _currentIndex, onTabChanged: _onTabChanged),
+        SubBHomeUI(currentTabIndex: _currentIndex, onTabChanged: _onTabChanged),
+        SubCHomeUI(currentTabIndex: _currentIndex, onTabChanged: _onTabChanged),
+        SubDHomeUI(currentTabIndex: _currentIndex, onTabChanged: _onTabChanged),
+      ],
+    );
   }
 }

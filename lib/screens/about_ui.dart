@@ -11,13 +11,16 @@ class _AboutUIState extends State<AboutUI> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF7F7F7),
+      backgroundColor: const Color.fromARGB(255, 224, 217, 217),
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(56),
         child: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
-              colors: [Color(0xFFFF6B35), Color(0xFFE91E8C)],
+              colors: [
+                Color.fromARGB(255, 48, 30, 24),
+                Color.fromARGB(255, 48, 16, 33)
+              ],
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
             ),
@@ -57,7 +60,10 @@ class _AboutUIState extends State<AboutUI> {
                   const SizedBox(height: 12),
                   ShaderMask(
                     shaderCallback: (bounds) => const LinearGradient(
-                      colors: [Color(0xFFFF6B35), Color(0xFFE91E8C)],
+                      colors: [
+                        Color.fromARGB(255, 53, 31, 24),
+                        Color.fromARGB(255, 65, 27, 48)
+                      ],
                     ).createShader(bounds),
                     child: const Text(
                       'ผู้จัดทำ',
@@ -83,8 +89,8 @@ class _AboutUIState extends State<AboutUI> {
                     ),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(16),
-                      child: Image.network(
-                        'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Logosau-02.png/250px-Logosau-02.png',
+                      child: Image.asset(
+                        'assets/images/logo_sau.png',
                         fit: BoxFit.contain,
                         errorBuilder: (_, __, ___) => const Icon(Icons.school,
                             size: 50, color: Colors.grey),
@@ -99,13 +105,17 @@ class _AboutUIState extends State<AboutUI> {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       gradient: const LinearGradient(
-                        colors: [Color(0xFFFF6B35), Color(0xFFE91E8C)],
+                        colors: [
+                          Color.fromARGB(255, 71, 42, 32),
+                          Color.fromARGB(255, 87, 24, 58)
+                        ],
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                       ),
                       boxShadow: [
                         BoxShadow(
-                            color: const Color(0xFFE91E8C).withOpacity(0.3),
+                            color: const Color.fromARGB(255, 78, 20, 52)
+                                .withOpacity(0.3),
                             blurRadius: 12,
                             offset: const Offset(0, 4)),
                       ],
@@ -163,11 +173,12 @@ class _AboutUIState extends State<AboutUI> {
             style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
-                color: Color(0xFFFF6B35)),
+                color: Color.fromARGB(255, 110, 57, 38)),
           ),
           Expanded(
             child: Text(value,
-                style: const TextStyle(fontSize: 14, color: Color(0xFF1A1A2E))),
+                style: const TextStyle(
+                    fontSize: 14, color: Color.fromARGB(255, 28, 28, 65))),
           ),
         ],
       ),

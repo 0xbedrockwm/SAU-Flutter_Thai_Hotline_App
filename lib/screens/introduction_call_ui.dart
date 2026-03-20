@@ -24,19 +24,25 @@ class _IntroductionCallUIState extends State<IntroductionCallUI> {
         decoration: const BoxDecoration(
           shape: BoxShape.circle,
           gradient: LinearGradient(
-            colors: [Color(0xFFFF6B35), Color(0xFFE91E8C)],
+            colors: [
+              Color.fromARGB(255, 110, 59, 40),
+              Color.fromARGB(255, 71, 29, 52)
+            ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
         ),
-        padding: const EdgeInsets.all(24),
-        child: Image.asset(
-          path,
-          fit: BoxFit.contain,
-          errorBuilder: (_, __, ___) => const Icon(
-            Icons.phone_in_talk,
-            size: 80,
-            color: Colors.white,
+        child: ClipOval(
+          child: Image.asset(
+            path,
+            fit: BoxFit.cover,
+            width: 260,
+            height: 260,
+            errorBuilder: (_, __, ___) => const Icon(
+              Icons.phone_in_talk,
+              size: 80,
+              color: Colors.white,
+            ),
           ),
         ),
       ),
@@ -48,13 +54,17 @@ class _IntroductionCallUIState extends State<IntroductionCallUI> {
     return Container(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
-          colors: [Color(0xFFFF6B35), Color(0xFFE91E8C)],
+          colors: [
+            Color.fromARGB(255, 94, 52, 37),
+            Color.fromARGB(255, 75, 28, 54)
+          ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
       ),
       child: IntroductionScreen(
         globalBackgroundColor: Colors.transparent,
+        scrollPhysics: const BouncingScrollPhysics(),
         pages: [
           PageViewModel(
             titleWidget: const Text(
@@ -86,7 +96,7 @@ class _IntroductionCallUIState extends State<IntroductionCallUI> {
               style: TextStyle(fontSize: 15, color: Colors.white70),
               textAlign: TextAlign.center,
             ),
-            image: _buildImage('assets/images/intro.png'),
+            image: _buildImage('assets/images/sub_a/banner.png'),
           ),
           PageViewModel(
             titleWidget: const Text(
@@ -102,7 +112,7 @@ class _IntroductionCallUIState extends State<IntroductionCallUI> {
               style: TextStyle(fontSize: 15, color: Colors.white70),
               textAlign: TextAlign.center,
             ),
-            image: _buildImage('assets/images/intro.png'),
+            image: _buildImage('assets/images/sub_b/banner.png'),
           ),
         ],
         onDone: _onDone,
@@ -129,7 +139,7 @@ class _IntroductionCallUIState extends State<IntroductionCallUI> {
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 14,
-              color: Color(0xFFE91E8C),
+              color: Color.fromARGB(255, 233, 30, 140),
               letterSpacing: 1.2,
             ),
           ),
